@@ -1,10 +1,3 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
- const prefix = "برفكسك";
-client.on('ready', () => {
-    console.log('I am ready!');
-});
-
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const yt = require('ytdl-core');
