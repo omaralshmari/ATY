@@ -132,47 +132,45 @@ rebel.guilds.get("348375103316426755").guild.member(Rebel).addRole(codes)
 rebel.guild.owner.send(join)
 });  
 
+ client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+               let mmmmEmbed = new Discord.RichEmbed()
+                         .setAuthor(client.user.username)
+                         .setThumbnail(message.author.avatarURL)
+ .addField(` لقد قمت بدعوة :`, ` ${inviteCount} `)
+           .setFooter(`- Requested By: ${message.author.tag}`);
+           message.channel.send(mmmmEmbed)
+});
+  }
+});
   client.on('message', message => {
-    if (message.content.startsWith("$tar")) {
+    if (message.author.bot) return;
+     if (message.content === prefix + "!invite") {
 
-        const translate = require('google-translate-api');
-        const Discord = require('discord.js');
 
-    let toTrans = message.content.split(' ').slice(1);
-    let language;
+ message.author.sendMessage(`
+ 
+ __~~ATY~~__
+╔═══╦════╦╗──╔╗────╔══╗╔═══╦════╗
+║╔═╗║╔╗╔╗║╚╗╔╝║────║╔╗║║╔═╗║╔╗╔╗║
+║║─║╠╝║║╚╩╗╚╝╔╝────║╚╝╚╣║─║╠╝║║╚╝
+║╚═╝║─║║──╚╗╔╝─╔══╗║╔═╗║║─║║─║║
+║╔═╗║─║║───║║──╚══╝║╚═╝║╚═╝║─║║
+╚╝─╚╝─╚╝───╚╝──────╚═══╩═══╝─╚╝
+♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ ♕ 
+ __created By__: ATY
 
-    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
-    if (!language) {
-        return message.reply(`**من فضلك قم باستخدام . \`!tr [الكلمه] to [اللغه]\`**`);
-    }
-    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
-    translate(finalToTrans, {to: language}).then(res => {
-            message.channel.send({embed: {
-                color: 3447003,
-                author: {
-                  name: 'S Bot translate',
-                  icon_url: client.user.avatarURL
-                },
-                fields: [{
-                    name: "S Bot",
-                    value: `**من:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**الي: **${language}\n\`\`\`${res.text}\`\`\``
-                  }
-                ],
-                timestamp: new Date(),
-                footer: {
-                  icon_url: client.user.avatarURL,
-                  text: "S Bot"
-                }
-              }
-            });
-    }).catch(err => {
-        message.channel.send({
-            embed: {
-                description: '❌  لم استطيع العثور علي اللغة المطلوبه',
-                color: 0xE8642B
-            }
-        });
-    });
+Server Support : https://discord.gg/cEtEXru
+
+bot link : https://goo.gl/AmyZY7
+`);
+
+message.channel.send('**تم الارسال في الخاص**');
+
     }
 });
   
