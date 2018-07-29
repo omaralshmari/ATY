@@ -96,8 +96,7 @@ var x2 = ['5587' ,' 9978' , '3785' , '7734' , '9864' , '7681' , '3758' , '7834' 
 message.channel.send(`**:moneybag: | ${message.author.username}, has transferrerd ` + "`" + args[0] + "$` to " + `<@${defineduser.id}>**`)
 mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${args[0]} from user ${message.author.username} ; (ID (${message.author.id})\`\`\``);
                message.channel.sendEmbed(embed)
-        })
-        })
+ 
         
   client.on('message', message => {
       if(message.content.startsWith ("!marry")) {
@@ -126,14 +125,6 @@ message.channel.awaitMessages(filte, { max: 1, time: 15000, errors: ['time'] })
 })
         
   }
-});
-  
-});
-
-
-
-
-}
 
       });
 
