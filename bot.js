@@ -149,7 +149,7 @@ rebel.guild.owner.send(join)
 });
   client.on('message', message => {
     if (message.author.bot) return;
-     if (message.content === prefix + "!invite") {
+     if (message.content === prefix + "invite") {
 
 
  message.author.sendMessage(`
@@ -173,6 +173,80 @@ message.channel.send('**تم الارسال في الخاص**');
 
     }
 });
+  client.on('message', async message => {
+  if(message.content.startsWith(prefix + "اقتراح")) {
+  await  message.channel.send(`اكتب اقتراحك الان`)
+    let filter = m => m.author.id === message.author.id
+      var text = '';
+        let sugsa = message.channel.awaitMessages(filter, { max: 1, time: 60000})
+          .then(co => {
+            text = co.first().content
+
+              message.channel.send(`تم حفظ اقتراحك الرجاء انتضار الرد من قبل الاداره`)
+                client.channels.get("اي دي روم الي تبيه").send(`${message.author.username}'s sug => ${text}`)
+
+              })
+            }
+          })
+
+client.on('message', async message => {
+  if(message.content.startsWith(prefix + "tc")) {
+    await message.channel.send("ارسل اسم الروم").then(e => {
+    let filter = m => m.author.id === message.author.id
+    let name = '';
+    let time = '';
+    let type = '';
+    let limit = '';
+
+   
+    message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
+    .then(collected => {
+      name = collected.first().content
+      collected.first().delete()
+
+
+
+e.edit("ارسل مدة الروم بالدقائق لااقل من 2 ولا اعلى من 180")
+message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
+.then(co => {
+if(isNaN(co.first().content)) return message.reply("الوقت بالدقائق ! ارقام فقطٍ");
+if(co.first().content > 180 || co.first().content < 2) return message.channel.send("لا اقل من دقيقتان ولا اكثر من 180 دقيقه")
+  time = co.first().content
+co.first().delete()
+  e.edit("ارسل نوع الروم text, voice")
+message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
+.then(col => {
+  type = col.first().content
+col.first().delete()
+e.edit("ارسل عدد الاعضاء الذين يستطيعون الدخول")
+message.channel.awaitMessages(filter, { max: 1, time: 20000, errors: ['time'] })
+.then(coll => {
+  if(isNaN(coll.first().content)) return message.reply("عدد الاعضاء يكون بالارقام فقط");
+    limit = coll.first().content
+coll.first().delete()
+
+  e.edit("جاري اعداد الغرفه الرجاء الانتضار...")
+  message.guild.createChannel(name, type).then(c => {
+    c.edit({
+      userLimit: limit
+    })
+    setTimeout(() => {
+      c.delete()
+      message.channel.send("تم انقضاء الوقت")
+    }, Math.floor(time*60000))
+    
+  })
+  e.edit("تم انشاء الغرفه استمتع")
+
+})
+})
+})
+})
+})
+
+  }
+})
+  
   
   
 client.login(process.env.BOT_TOKEN); 
