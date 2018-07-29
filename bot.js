@@ -238,6 +238,16 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
 
+client.on('message' , message => {
+    var prefix = "!";
+    if(message.content.startsWith(prefix + 'تذكرة')) {
+        message.channel.send('`The Ticket has been create`');
+        client.users.get('ايديك').send({embed: new Discord.RichEmbed()
+        .setDescription(`**<@${message.author.id}> has Create a Ticket call him**`)
+        });
+    }
+});    
+
   
   
 client.login(process.env.BOT_TOKEN); 
