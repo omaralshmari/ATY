@@ -1,9 +1,6 @@
 let sw = JSON.parse(fs.readFileSync("./setWlc.json", "UTF8"))
  
     client.on('message', message => {
-const Canvas = require("canvas") // npm i canvas
-const fs = require("fs") // npm i fs
- 
         let mothed = ['text', 'embed', 'image'];
         let sets = message.content.split(" ").slice(1).join(" ")
         let style = message.content.split(" ").slice(2).join(" ")
