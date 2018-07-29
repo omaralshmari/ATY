@@ -269,7 +269,7 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
   
   client.on('ready', function(){
     var ms = 1000 ;
-    var setGame = [`!i `,` !in`,`!inv`,`!invi`,`!invit`,`!invite`];
+    var setGame = [`!in `,` !inv`,`!invi`,`!invite`];
     var i = -1;
     var j = 0;
     setInterval(function (){
