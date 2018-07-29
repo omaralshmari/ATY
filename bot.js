@@ -191,7 +191,7 @@ message.channel.send('**تم الارسال في الخاص**');
 
 client.on('message', async message => {
   if(message.content.startsWith(prefix + "tc")) {
-    await message.channel.send("ارسل اسم الروم").then(e => {
+    await message.channel.send("470659610521632769").then(e => {
     let filter = m => m.author.id === message.author.id
     let name = '';
     let time = '';
@@ -246,7 +246,13 @@ coll.first().delete()
 
   }
 })
-  
+   client.on('message', message => {
+        var  user = message.mentions.users.first() || message.author;
+    if (message.content.startsWith("!avatar")) {
+message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
+}
+});
+
   
   
 client.login(process.env.BOT_TOKEN); 
