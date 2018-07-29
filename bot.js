@@ -268,8 +268,8 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
 });
   
   client.on('ready', function(){
-    var ms = 250 ;
-    var setGame = [`!in `,` !inv`,`!invi`,`!invite`];
+    var ms = 1000 ;
+    var setGame = [`!h `,` !he`,`!hel`,`!help`];
     var i = -1;
     var j = 0;
     setInterval(function (){
@@ -281,11 +281,12 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
         }
         i = i+j;
         client.user.setGame(setGame[i],`http://www.twitch.tv/idk`);
-    }, ms);250
+    }, ms);1000
 
 });
+  
   client.on('message', message => {
-if(message.content == '<@ID Your Bot>') {
+if(message.content == '<@472471186090098708>') {
 message.channel.startTyping()
 setTimeout(() => { 
 message.channel.stopTyping()
