@@ -108,63 +108,61 @@ mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${arg
 
       });
 
-const Discord = require("discord.js");
-const fs = require('fs');
 
-const client = new Discord.Client();
-
-const config = require('./auth.json');
-
-// make a new stream for each time someone starts to talk
-function generateOutputFile(channel, member) {
-  // use IDs instead of username cause some people have stupid emojis in their name
-  const fileName = `./recordings/${channel.id}-${member.id}-${Date.now()}.pcm`;
-  return fs.createWriteStream(fileName);
-}
-
-client.on('message', msg => {
-  if (msg.content.startsWith(config.prefix+'join')) {
-    let [command, ...channelName] = msg.content.split(" ");
-    if (!msg.guild) {
-      return msg.reply('no private service is available in your area at the moment. Please contact a service representative for more details.');
-    }
-    const voiceChannel = msg.guild.channels.find("name", channelName.join(" "));
-    //console.log(voiceChannel.id);
-    if (!voiceChannel || voiceChannel.type !== 'voice') {
-      return msg.reply(`I couldn't find the channel ${channelName}. Can you spell?`);
-    }
-    voiceChannel.join()
-      .then(conn => {
-        msg.reply('ready!');
-        // create our voice receiver
-        const receiver = conn.createReceiver();
-
-        conn.on('speaking', (user, speaking) => {
-          if (speaking) {
-            msg.channel.sendMessage(`I'm listening to ${user}`);
-            // this creates a 16-bit signed PCM, stereo 48KHz PCM stream.
-            const audioStream = receiver.createPCMStream(user);
-            // create an output stream so we can dump our data in a file
-            const outputStream = generateOutputFile(voiceChannel, user);
-            // pipe our audio data into the file stream
-            audioStream.pipe(outputStream);
-            outputStream.on("data", console.log);
-            // when the stream ends (the user stopped talking) tell the user
-            audioStream.on('end', () => {
-              msg.channel.sendMessage(`I'm no longer listening to ${user}`);
+client.on("message", (message) => {
+    
+    if (isCommand(message, "new")) {
+        const reason = message.content.split(" ").slice(1).join(" ");
+        if (!message.guild.roles.exists("name", "Support Team")) return message.channel.send(`This server doesn't have a \`Support Team\` role made, so the ticket won't be opened.\nIf you are an administrator, make one with that name exactly and give it to users that should be able to see tickets.`);
+        if (message.guild.channels.exists("name", "ticket-" + message.author.id)) return message.channel.send(`You already have a ticket open.`);
+        message.guild.createChannel(`ticket-${message.author.id}`, "text").then(c => {
+            let role = message.guild.roles.find("name", "Support Team");
+            let role2 = message.guild.roles.find("name", "@everyone");
+            c.overwritePermissions(role, {
+                SEND_MESSAGES: true,
+                READ_MESSAGES: true
             });
-          }
-        });
-      })
-      .catch(console.log);
-  }
-  if(msg.content.startsWith(config.prefix+'leave')) {
-    let [command, ...channelName] = msg.content.split(" ");
-    let voiceChannel = msg.guild.channels.find("name", channelName.join(" "));
-    voiceChannel.leave();
-  }
+            c.overwritePermissions(role2, {
+                SEND_MESSAGES: false,
+                READ_MESSAGES: false
+            });
+            c.overwritePermissions(message.author, {
+                SEND_MESSAGES: true,
+                READ_MESSAGES: true
+            });
+            message.channel.send(`:white_check_mark: Your ticket has been created, #${c.name}.`);
+            const embed = new Discord.RichEmbed()
+                .setColor(0xCF40FA)
+                .addField(`Hey ${message.author.username}!`, `Please try explain why you opened this ticket with as much detail as possible. Our **Support Staff** will be here soon to help.`)
+                .setTimestamp();
+            c.send({
+                embed: embed
+            });
+        }).catch(console.error); 
+    }
+
+
+    if (isCommand(message, "close")) {
+        if (!message.channel.name.startsWith(`ticket-`)) return message.channel.send(`You can't use the close command outside of a ticket channel.`);
+
+        message.channel.send(`Are you sure? Once confirmed, you cannot reverse this action!\nTo confirm, type \`/confirm\`. This will time out in 10 seconds and be cancelled.`)
+            .then((m) => {
+                message.channel.awaitMessages(response => response.content === '/confirm', {
+                        max: 1,
+                        time: 10000,
+                        errors: ['time'],
+                    })
+                    .then((collected) => {
+                        message.channel.delete();
+                    })
+                    .catch(() => {
+                        m.edit('Ticket close timed out, the ticket was not closed.').then(m2 => {
+                            m2.delete();
+                        }, 3000);
+                    });
+            });
+    }
+
 });
-
-
 
 client.login(process.env.BOT_TOKEN); 
