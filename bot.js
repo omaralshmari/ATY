@@ -1,8 +1,4 @@
-const Discord = require('discord.js');
-const client = new Discord.Client();
- const prefix = "!";
-client.on('ready', () => {
-    console.log('I am ready!');
+
 });
 
 let sw = JSON.parse(fs.readFileSync("./setWlc.json", "UTF8"))
