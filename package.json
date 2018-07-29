@@ -45,5 +45,6 @@
     "ffmpeg-binaries": "^4.0.0 ",
     "queue": "^4.4.2",     
 "simple-youtube-api": "^5.0.2"
+"canvas": "^1.6.11"
   }
 }
