@@ -102,20 +102,20 @@ mentionned.send(` :credit_card: | Transfer Receipt \`\`\`You have received ${arg
 		
 client.on("ready", async  => {
 setInterval(function(){
-client.channels.find('id', 'ايدي الروم').setName("W");
-client.channels.find('id', 'ايدي الروم').setName("We");
-client.channels.find('id', 'ايدي الروم').setName("Wel");
-client.channels.find('id', 'ايدي الروم').setName("Welc");
-client.channels.find('id', 'ايدي الروم').setName("Welco");
-client.channels.find('id', 'ايدي الروم').setName("Welcom");
-client.channels.find('id', 'ايدي الروم').setName("Welcome");
-client.channels.find('id', 'ايدي الروم').setName("Welcome T");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To C");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To Co");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To Cod");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To Code");
-client.channels.find('id', 'ايدي الروم').setName("Welcome To Codes");
+client.channels.find('id', '469433733758451740').setName("W");
+client.channels.find('id', '469433733758451740').setName("We");
+client.channels.find('id', '469433733758451740').setName("Wel");
+client.channels.find('id', '469433733758451740').setName("Welc");
+client.channels.find('id', '469433733758451740').setName("Welco");
+client.channels.find('id', '469433733758451740').setName("Welcom");
+client.channels.find('id', '469433733758451740').setName("Welcome");
+client.channels.find('id', '469433733758451740').setName("Welcome T");
+client.channels.find('id', '469433733758451740').setName("Welcome To");
+client.channels.find('id', '469433733758451740').setName("Welcome To C");
+client.channels.find('id', '469433733758451740').setName("Welcome To Co");
+client.channels.find('id', '469433733758451740').setName("Welcome To Cod");
+client.channels.find('id', '469433733758451740').setName("Welcome To Code");
+client.channels.find('id', '469433733758451740').setName("Welcome To Codes");
   }, 3000);
 });
 
