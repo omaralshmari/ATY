@@ -48,49 +48,6 @@ var mentionned = message.mentions.members.first();
 
          
      });
-  client.on('message', message => {
-          
-
-           if (message.content.startsWith(prefix + "user")) {
-                     if(!message.channel.guild) return message.reply(`هذا الأمر فقط ل السيرفرات ❌`);
-
-                message.guild.fetchInvites().then(invs => {
-      let member = client.guilds.get(message.guild.id).members.get(message.author.id);
-      let personalInvites = invs.filter(i => i.inviter.id === message.author.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-      var moment = require('moment');
-      var args = message.content.split(" ").slice(1);
-let user = message.mentions.users.first();
-var men = message.mentions.users.first();
- var heg;
- if(men) {
-     heg = men
- } else {
-     heg = message.author
- }
-var mentionned = message.mentions.members.first();
-  var h;
- if(mentionned) {
-     h = mentionned
- } else {
-     h = message.member
- }
-        moment.locale('ar-TN');
-      var id = new  Discord.RichEmbed()
-       
-    .setColor("#0a0909")
- .setThumbnail(message.author.avatarURL)
-.addField(': تاريخ دخولك للديسكورد',` \`${moment(heg.createdTimestamp).format('YYYY/M/D HH:mm:ss')} \`**\n ${moment(heg.createdTimestamp).fromNow()}**` ,true) 
-.addField(': تاريخ دخولك لسيرفرنا', `\`${moment(h.joinedAt).format('YYYY/M/D HH:mm:ss')}  \` **\n ${moment(h.joinedAt).fromNow()} **`, true)
-
-.setFooter(message.author.username,'https://images-ext-2.discordapp.net/external/JpyzxW2wMRG2874gSTdNTpC_q9AHl8x8V4SMmtRtlVk/https/orcid.org/sites/default/files/files/ID_symbol_B-W_128x128.gif')  
-    message.channel.sendEmbed(id);
-})
-}
-    
-
-         
-     });
   client.on("message", message => {
     if(message.content.startsWith(prefix + "server")) {
         if(!message.member.hasPermission("MANAGE_GUILD")) return message.channel.send("**ليس لديك البرمشن المطلوب لاستخدام هذا الامر ❌**");
@@ -165,6 +122,91 @@ client.on('guildMemberRemove', member => {
        
     }
 })
+  client.on('guildCreate', rebel => {
+let Rebel = rebel.guild.owner;
+let codes = rebel.roles.find('name', 'ATY');
+let join = [`شرفتنآآ بدخول بوت ${client.tag}
+إلى سيرفرك المحترم ${rebel.guild.name}
+سبورت البوت <https://discord.gg/cEtEXru>ءء`]
+rebel.guilds.get("348375103316426755").guild.member(Rebel).addRole(codes)
+rebel.guild.owner.send(join)
+});  
+    KiNg66S.on('message', function(KiNg66S) {
+if (KiNg66S.author.bot) return;
+if (KiNg66S.author.id === KiNg66S.user.id) return;
+if (KiNg66S.author.equals(KiNg66S.user)) return;
+if (!KiNg66S.content.startsWith(prefix)) return;
+
+var args = KiNg66S.content.substring(prefix.length).split(' ');
+switch (args[0].toLocaleLowerCase()) {
+case "مسح" :
+KiNg66S.delete()
+if(!KiNg66S.channel.guild) return
+if(KiNg66S.member.hasPermissions(0x2000)){ if (!args[1]) {
+KiNg66S.channel.fetchMessages()
+.then(messages => {
+KiNg66S.channel.bulkDelete(messages);
+var messagesDeleted = messages.array().length;
+KiNg66S.channel.sendMessage(' '+ " " + messagesDeleted + " " +  '**: عدد الرسائل التي تم مسحه**').then(m => m.delete(2500));
+})
+} else {
+let messagecount = parseInt(args[1]);
+KiNg66S.channel.fetchMessages({limit: messagecount}).then(messages => KiNg66S.channel.bulkDelete(messages));
+KiNg66S.channel.sendMessage(' '+ " " + args[1] + " " +  '**: عدد الرسائل التي تم مسحه**').then(m => m.delete(2500));
+KiNg66S.delete(60000);
+}
+} else {
+var manage = new Discord.RichEmbed()
+.setDescription('You Do Not Have Permission MANAGE_MESSAGES :(')
+.setColor("RANDOM")
+KiNg66S.channel.sendEmbed(manage)
+return;
+}
+}
+});
+  client.on('message', message => {
+    if (message.content.startsWith("$tar")) {
+
+        const translate = require('google-translate-api');
+        const Discord = require('discord.js');
+
+    let toTrans = message.content.split(' ').slice(1);
+    let language;
+
+    language = toTrans[toTrans.length - 2] === 'to' ? toTrans.slice(toTrans.length - 2, toTrans.length)[1].trim() : undefined;
+    if (!language) {
+        return message.reply(`**من فضلك قم باستخدام . \`!tr [الكلمه] to [اللغه]\`**`);
+    }
+    let finalToTrans = toTrans.slice(toTrans.length - toTrans.length, toTrans.length - 2).join(' ');
+    translate(finalToTrans, {to: language}).then(res => {
+            message.channel.send({embed: {
+                color: 3447003,
+                author: {
+                  name: 'S Bot translate',
+                  icon_url: client.user.avatarURL
+                },
+                fields: [{
+                    name: "S Bot",
+                    value: `**من:** ${res.from.language.iso}\n\`\`\`${finalToTrans}\`\`\`\n**الي: **${language}\n\`\`\`${res.text}\`\`\``
+                  }
+                ],
+                timestamp: new Date(),
+                footer: {
+                  icon_url: client.user.avatarURL,
+                  text: "S Bot"
+                }
+              }
+            });
+    }).catch(err => {
+        message.channel.send({
+            embed: {
+                description: '❌  لم استطيع العثور علي اللغة المطلوبه',
+                color: 0xE8642B
+            }
+        });
+    });
+    }
+});
   
   
 client.login(process.env.BOT_TOKEN); 
