@@ -362,7 +362,7 @@ client.on('message', message => {
       message.author.sendEmbed(Embed11)
     }
 });
-const Discord = require('discord.js');
+
 const client = new Discord.Client();
 const prefix = '!'
 client.on('ready', () => {
