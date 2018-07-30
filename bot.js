@@ -204,9 +204,12 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 });
 
   
+
+
+
   client.on('ready', function(){
     var ms = 1000 ;
-    var setGame = [`ATY`,`!help`,ََ`A`,`AT`,`ATY`];
+    var setGame = [`ATY`,`!help`,`A`,`AT`,`ATY`];
     var i = -1;
     var j = 0;
     setInterval(function (){
