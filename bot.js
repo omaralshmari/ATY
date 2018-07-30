@@ -743,21 +743,57 @@ client.on('message', message => {
          }
  })
 client.on('message', message => {
-    if (message.content === "$help") {
-    let embed = new Discord.RichEmbed()
-  .setAuthor(message.author.username)
-  .setFooter(`©ATY™.`, 'https://images-ext-2.discordapp.net/external/X9SanEG0s7Dtv3krTgy-kod_fj6JRVJ2AG4JryCiiz0/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/375761288518828042/fffa31c797e88cf059dd6db424ff456a.png?width=80&height=80')
-  .setColor("#000000")
-  .addField("Done | تــــم" , ":envelope: | :sleuth_or_spy::skin-tone-3:"
-   "للاوامر العامة  ==> !help1"
-   "للاوامر الادارية ==> !help2")
+    if (message.author.bot) return;
+     if (message.content === prefix + "help-ar") {
+		 message.channel.send('**تم ارسالك في الخاص**');
+            
+	
+		 
+
+
+ message.author.sendMessage(`
+ **
+╔[❖════════════❖]╗
+      اوامر ادارية
+╚[❖════════════❖]╝
+
+ ❖ !kick <mention > ➾ لطرد عضو
+ 
+ ❖ !mute < mention > ➾ اسكات عضو 
+
+ ❖ !clear  ➾ لتنضيف المحادثة (fixing)
+
+ ❖ !cv <name> ➾ صنع روم صوتية
+
+ ❖ !ct <name> ➾ صنع روم كتابية
+
+ ❖ !unmute <mention> ➾ فك الاسكات من العضو
   
-  
-  
-  message.channel.sendEmbed(embed);
-  }
-  });
-  
+ ❖ !bc <message> ➾ لارسال رسالة لجميع اعضاء السيرفر
+
+
+╔[❖════════════❖]╗
+      اوامر عامة
+╚[❖════════════❖]╝
+
+❖ !roll <number> ➾ قرعة
+
+❖ !avatar ➾ شعار حسابك
+
+❖ !id ➾ اي دي
+
+❖ !date ➾ التاريخ
+
+❖ *ping ➾ عرض سرعه اتصال البوت
+
+❖ *bot ➾ معلومات البوت
+
+❖ *server ➾ معلومات السيرفر
+
+`);
+
+    }
+});
 
 var antispam = require("anti-spam");//npm i anti-spam
  
