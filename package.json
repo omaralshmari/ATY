@@ -46,7 +46,7 @@
     "queue": "^4.4.2",     
     "simple-youtube-api": "^5.0.2",
     "gif-search": "^2.0.1",
-    "vm": "^0.1.0"
+    "vm": "^0.1.0",
     "canvas": "^1.6.11"
   }
 }
