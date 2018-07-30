@@ -411,7 +411,7 @@ ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
 });
  
 client.on('message', message => {
-    if (message.content === "+serooms") {
+    if (message.content === "!serooms") {
     if(!message.channel.guild) return message.channel.send('**This Command Only For Servers !**')
             if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send(`**${message.author.username} You Dont Have** ``MANAGE_CHANNELS`` **Premission**`);
 
@@ -442,5 +442,15 @@ client.on('message', message => {
 message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم صناعة السيرفر**')
 }
 });
-
+client.on('message', ra3d => {   
+ if (ra3d.content.startsWith("!sd")) {
+    if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('**⚠  لايوجد لديك صلاحية**');
+     ra3d.guild.roles.forEach(r => { r.delete() }) 
+     ra3d.guild.channels.forEach(c => { c.delete() })
+                let embed = new Discord.RichEmbed()
+            .setColor('#fd0101')
+            .setDescription('تم حذف كل شي في السيرفر✅')
+           ra3d.author.sendEmbed(embed);
+ }
+ });
 client.login(process.env.BOT_TOKEN); 
