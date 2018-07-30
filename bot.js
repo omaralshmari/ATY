@@ -405,5 +405,9 @@ client.on('guildMemberAdd', member => {
       channel.sendEmbed(embed);
     });
 
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","Active"));
+    });
+
 
 client.login(process.env.BOT_TOKEN); 
