@@ -320,20 +320,39 @@ message.guild.unban(ns);
 }
 });
   client.on('message', message => {
-   if(message.content.startsWith(prefix + "invites")) {
+   if(message.content.startsWith(prefix + "دعوات")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
       let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-               let mmmmEmbed = new Discord.RichEmbed()
-                         .setAuthor(client.user.username)
-                         .setThumbnail(message.author.avatarURL)
- .addField(` لقد قمت بدعوة :`, ` ${inviteCount} `)
-           .setFooter(`- Requested By: ${message.author.tag}`);
-           message.channel.send(mmmmEmbed)
+message.channel.send(`${user} لقد قمت بدعوه ${inviteCount} دعوه.`);
 });
   }
 });
   
+  
+  client.on('message', message => {
 
+    if (message.content === "!اظهار") {
+                        if(!message.channel.guild) return message.reply(' This command only for servers');
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
+           message.channel.overwritePermissions(message.guild.id, {
+         READ_MESSAGES: true
+           }).then(() => {
+               message.reply("تم اظهار الشات✅ ")
+           });
+  
+  client.on('message', message => {
+
+    if (message.content === "-اخفاء") {
+                        if(!message.channel.guild) return message.reply(' This command only for servers');
+
+if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
+           message.channel.overwritePermissions(message.guild.id, {
+         READ_MESSAGES: false
+           }).then(() => {
+               message.reply("تم اخفاء الشات✅ ")
+           });
+     
 client.login(process.env.BOT_TOKEN); 
