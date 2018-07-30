@@ -445,9 +445,9 @@ if (msg.content.startsWith(`!report`)) {
 // لو ما كتب تبليغ بيقوله اكتب تبليغ
   if (!args[1]) return msg.reply(`امممم .. اكتب تبليغك`)
 // استبدل <الروم> بأسم الروم حقك
-  if (msg.guild.channels.find('name', '<الروم>')) {
+  if (msg.guild.channels.find('name', '<report>')) {
 // استبدل هنا بعد
-    msg.guild.channels.find('name', '<الروم>').send(`
+    msg.guild.channels.find('name', '<report>').send(`
   تبليغ على : ${msg.mentions.members.first()}
   بلغ عليه من قبل : ${msg.member}
   في روم : ${msg.channel.name}
