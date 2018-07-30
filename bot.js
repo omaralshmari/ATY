@@ -415,27 +415,7 @@ if (message.content.startsWith(prefix + 'مسح')) {
 client.on("guildCreate", guild => {
   console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
 });
-client.on('message', message => {
-    if(message.content === '$largguilds') {
-        if(message.author.id !== '278114289393598464') return;
-const l = client.guilds.filter(g => g.memberCount < 1000).map(g => g.name).join("\n");
-message.channel.send(l)
-        
-    }
- client.on('message', message => {
-if(message.content == ('roles')){
-    // By: . Badd
-    var roles = message.guild.roles;
-    if(roles){
-        for(let i=0;i<roles.size;i++){
-        var role = message.guild.roles.array();
-        role = role.sort((a,b)=> b.position - a.position).join('\n,');
-        }// By: . Badd
-    }// By: . Badd
- message.channel.send(role);
-}// By: . Badd
 
- });
  
  client.on('message', msg => { 
 if (msg.content.startsWith(`!report`)) {
