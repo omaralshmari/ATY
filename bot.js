@@ -743,18 +743,21 @@ client.on('message', message => {
          }
  })
 client.on('message', message => {
-    if (message.content === "!help") {
+    if (message.content === "$help") {
     let embed = new Discord.RichEmbed()
   .setAuthor(message.author.username)
-  .setFooter(`© SHYBOY_05 ™.`, 'https://images-ext-2.discordapp.net/external/X9SanEG0s7Dtv3krTgy-kod_fj6JRVJ2AG4JryCiiz0/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/375761288518828042/fffa31c797e88cf059dd6db424ff456a.png?width=80&height=80')
+  .setFooter(`©ATY™.`, 'https://images-ext-2.discordapp.net/external/X9SanEG0s7Dtv3krTgy-kod_fj6JRVJ2AG4JryCiiz0/%3Fsize%3D2048/https/cdn.discordapp.com/avatars/375761288518828042/fffa31c797e88cf059dd6db424ff456a.png?width=80&height=80')
   .setColor("#000000")
-  .addField("Done | تــــم" , ":envelope: | :sleuth_or_spy::skin-tone-3:شيك علي في الخاص")
+  .addField("Done | تــــم" , ":envelope: | :sleuth_or_spy::skin-tone-3:"
+   "للاوامر العامة  ==> !help1"
+   "للاوامر الادارية ==> !help2")
   
   
   
   message.channel.sendEmbed(embed);
   }
   });
+  
 
 var antispam = require("anti-spam");//npm i anti-spam
  
@@ -769,6 +772,50 @@ antispam(client, {
   maxDuplicatesBan: 10, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
   time: 100000, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
+var prefix = "$";
+
+client.on("message", message => {
+
+            if (message.content.startsWith(prefix + "obc")) {
+                         if (!message.member.hasPermission("ADMINISTRATOR"))  return;
+  let args = message.content.split(" ").slice(1);
+  var argresult = args.join(' '); 
+  message.guild.members.filter(m => m.presence.status !== 'offline').forEach(m => {
+ m.send(`${argresult}\n ${m}`);
+})
+ message.channel.send(`\`${message.guild.members.filter(m => m.presence.status !== 'online').size}\` : عدد الاعضاء المستلمين`); 
+ message.delete(); 
+};     
+});
+client.on("message", message => {
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!args[1]) {
+    message.channel.send("**bc <message>**");
+    return;
+    }
+            message.guild.members.forEach(m => {
+       if(!message.member.hasPermission('ADMINISTRATOR')) return;
+                m.send(args);
+            });
+            const AziRo = new Discord.RichEmbed()
+            .setAuthor(message.author.username, message.author.avatarURL)   
+            .setTitle('✅| جاري ارسال رسالتك ') 
+            .addBlankField(true)
+            .addField('♨| عدد الاعضاء المرسل لهم ', message.guild.memberCount , true)        
+            .addField('📝| الرسالة ', args)
+            .setColor('RANDOM')  
+            message.channel.sendEmbed(AziRo);          
+        }
+        } else {
+            return;
+        }
+    });
+
+
 
   
   
