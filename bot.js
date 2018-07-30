@@ -379,78 +379,101 @@ client.on('ready', () => {
   console.log('╚[════════════════════════════════════]╝')
 });
 
-client.on('message', message => {
-    if (message.content === "!createroles") {
-    if(!message.channel.guild) return message.channel.send('**This Command Only For Servers !**')
-            if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(`**${message.author.username} You Dont Have** ``MANAGE_ROLES`` **Premission**`);
 
-                     message.guild.createRole({ name: "Owner", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Co-Owner", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Leader", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Co-Leader", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "King", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Qween", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "HighNiss", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Pros", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "VIP+", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "VIP", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Actve", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Members", color: "#ffffff", permissions: [] })
-        
+client.on('guildMemberRemove', member => {
+let channel = member.guild.channels.find('name', 'welcome');
+let memberavatar = member.user.avatarURL
+  if (!channel) return; 
+let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setThumbnail(memberavatar)
+    .addField('🎽 | الاسم :  ',`${member}`)
+    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
+    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
+            .addField('➡| تبقا',`${member.guild.memberCount}`)
+           
+              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
+                
+                                 .addField('شكرا لدخولك سيرفر', `${member.guild.name}`,true)
+                                   
+ .setFooter("Top Bot")
+    .setTimestamp()
 
-message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم صناعه الرتب **')
-}
+  channel.sendEmbed(embed);
 });
-  client.on('message' , ReBeL => {
-var prefix = "-";
-if(ReBeL.author.bot) return;
-if(ReBeL.channel.type == 'dm') return;
-if(ReBeL.content.startsWith(prefix + "احذف الالوان")) {
-ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
-}
+client.on('message', message => {
+    let args = message.content.split(" ").slice(1);
+if (message.content.startsWith(prefix + 'مسح')) {
+ let args = message.content.split(" ").slice(1)
+    let messagecount = parseInt(args);
+    if (args > 100) return message.reply("اعلى حد للمسح هو 100").then(messages => messages.delete(5000))
+    if (!messagecount) return message.reply("ااختر كمية المسح من 1-100").then(messages => messages.delete(5000))
+    message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
+    message.channel.send(`\`${args}\` تم المسح`).then(messages => messages.delete(5000));
+  }
+  });
+client.on("guildCreate", guild => {
+  console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
+});
+client.on('message', message => {
+    if(message.content === '$largguilds') {
+        if(message.author.id !== '278114289393598464') return;
+const l = client.guilds.filter(g => g.memberCount < 1000).map(g => g.name).join("\n");
+message.channel.send(l)
+        
+    }
+ client.on('message', message => {
+if(message.content == ('roles')){
+    // By: . Badd
+    var roles = message.guild.roles;
+    if(roles){
+        for(let i=0;i<roles.size;i++){
+        var role = message.guild.roles.array();
+        role = role.sort((a,b)=> b.position - a.position).join('\n,');
+        }// By: . Badd
+    }// By: . Badd
+ message.channel.send(role);
+}// By: . Badd
 });
  
-client.on('message', message => {
-    if (message.content === "!serooms") {
-    if(!message.channel.guild) return message.channel.send('**This Command Only For Servers !**')
-            if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send(`**${message.author.username} You Dont Have** ``MANAGE_CHANNELS`` **Premission**`);
-
-        
-     message.guild.createChannel('「 O W N E R 」', 'voice')
-     message.guild.createChannel('「 C O - L E A D E R 」', 'voice')
-     message.guild.createChannel('「ADMINSTRATOR」', 'voice')
-     message.guild.createChannel('𖦲₁PARTY | بارتي𖦲', 'voice')
-     message.guild.createChannel('𖦲₂PARTY | بارتي𖦲', 'voice')
-     message.guild.createChannel('𖦲₂PARTY | بارتي𖦲', 'voice')
-     message.guild.createChannel('✬ʝuşτ-1✬', 'voice')
- message.guild.createChannel('✬ʝuşτ-2✬', 'voice')
-     message.guild.createChannel('✬ʝuşτ-3✬', 'voice')
-     message.guild.createChannel('✬ʝuşτ-4✬', 'voice')
-     message.guild.createChannel('✬ʝuşτ-5✬', 'voice')
-     message.guild.createChannel('😴sleep', 'voice')
-          message.guild.createChannel('༆كَبّـآرَ آلَشّـخٌـصِـيّآتُ༆', 'voice')
-     message.guild.createChannel('welcome', 'text')
-     message.guild.createChannel('info', 'text')
-     message.guild.createChannel('bot', 'text')
-     message.guild.createChannel('chat', 'text')
-     message.guild.createChannel('Youtube', 'text')
-     message.guild.createChannel('bo7', 'text')
-     message.guild.createChannel('party', 'text')
-     message.guild.createChannel('pic', 'text')
-
-
-message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم صناعة السيرفر**')
+ client.on('message', msg => { 
+if (msg.content.startsWith(`!report`)) {
+// تعريف الارجس
+   let args = msg.content.split(" ").slice(1);
+// لو ما منشن احد يرد عيله
+  if (!msg.mentions.members.first()) return msg.reply(`يجب عليك منشن شخص`)
+// لو ما كتب تبليغ بيقوله اكتب تبليغ
+  if (!args[1]) return msg.reply(`امممم .. اكتب تبليغك`)
+// استبدل <الروم> بأسم الروم حقك
+  if (msg.guild.channels.find('name', '<الروم>')) {
+// استبدل هنا بعد
+    msg.guild.channels.find('name', '<الروم>').send(`
+  تبليغ على : ${msg.mentions.members.first()}
+  بلغ عليه من قبل : ${msg.member}
+  في روم : ${msg.channel.name}
+  السبب : **${args.join(" ").split(msg.mentions.members.first()).slice(' ')}**
+  `)
+  }
 }
+})
+ 
+ client.on('message', message => {
+
+    if(message.content.startsWith(prefix + 'rep')) {
+      if(!message.channel.guild) return;
+                    moment.locale('en');
+                  var getvalueof = message.mentions.users.first()
+                    if(!getvalueof) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
+                       if(getvalueof.id == message.author.id) return message.channel.send(`**${message.author.username}, you cant give yourself a reputation !**`)
+    if(profile[message.author.id].reps != moment().format('L')) {
+            profile[message.author.id].reps = moment().format('L');
+            profile[getvalueof.id].rep = Math.floor(profile[getvalueof.id].rep+1);
+         message.channel.send(`** :up:  |  ${message.author.username} has given ${getvalueof} a reputation point!**`)
+        } else {
+         message.channel.send(`**:stopwatch: |  ${message.author.username}, you can raward more reputation  ${moment().endOf('day').fromNow()} **`)
+        }
+       }
 });
-client.on('message', ra3d => {   
- if (ra3d.content.startsWith("!sd")) {
-    if(!message.member.hasPermission('MANAGE_CHANNELS')) return message.reply('**⚠  لايوجد لديك صلاحية**');
-     ra3d.guild.roles.forEach(r => { r.delete() }) 
-     ra3d.guild.channels.forEach(c => { c.delete() })
-                let embed = new Discord.RichEmbed()
-            .setColor('#fd0101')
-            .setDescription('تم حذف كل شي في السيرفر✅')
-           ra3d.author.sendEmbed(embed);
- }
- });
+
+
 client.login(process.env.BOT_TOKEN); 
