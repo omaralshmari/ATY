@@ -385,7 +385,7 @@ client.on("guildCreate", guild => {
 
 
 client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","Active"));
+    member.addRole(member.guild.roles.find("name","Members"));
     });
 client.on('guildMemberAdd', member => {
     var embed = new Discord.RichEmbed()
@@ -511,5 +511,24 @@ client.on('message', function(message) {
     client.channels.get("349166082105278477").send({embed:iiMo});
     }
 });
+client.on('message', message => {
+    if (!message.channel.guild) return;
+    if(!message.member.hasPermission('ADMINISTRATOR')) return message.reply("***  ليس معك صلاحيات  ***")
+    var prefix = "$";
+       if (message.content ===   prefix + "add role") {
+    message.channel.send("<@" + message.author.id + ">  ***  جاري اعطاء الرتبة للاعضاء كما امرت  *** ")
+    message.guild.members.forEach(m => {
+    m.addRole(message.guild.roles.find('name', 'Members'))
+    })
+    }
+    
+       if (message.content ===   prefix + "remove role") {
+    message.channel.send("<@" + message.author.id + ">  ***  جاري اعطاء الرتبة للاعضاء كما امرت  *** ")
+    message.guild.members.forEach(m => {
+    m.removeRole(message.guild.roles.find('name', 'Members'))
+    })
+    }
+    
+    });
     
 client.login(process.env.BOT_TOKEN); 
