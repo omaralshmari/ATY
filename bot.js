@@ -330,29 +330,6 @@ message.channel.send(`${user} لقد قمت بدعوه ${inviteCount} دعوه.`
   }
 });
   
-  
-  client.on('message', message => {
 
-    if (message.content === "!اظهار") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         READ_MESSAGES: true
-           }).then(() => {
-               message.reply("تم اظهار الشات✅ ")
-           });
-  
-  client.on('message', message => {
-
-    if (message.content === "-اخفاء") {
-                        if(!message.channel.guild) return message.reply(' This command only for servers');
-
-if(!message.member.hasPermission('MANAGE_MESSAGES')) return message.reply(' ليس لديك صلاحيات');
-           message.channel.overwritePermissions(message.guild.id, {
-         READ_MESSAGES: false
-           }).then(() => {
-               message.reply("تم اخفاء الشات✅ ")
-           });
      
 client.login(process.env.BOT_TOKEN); 
