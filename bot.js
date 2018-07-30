@@ -498,5 +498,18 @@ client.on('message', message => {
     message.reply('*** Done :white_check_mark:  ***').then(msg => {msg.delete(10000)});
     }
     });
+client.on('message', function(message) {
+    if (message.channel.type === "dm") {
+        if (message.author.id === client.user.id) return;
+        var iiMo = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setTimestamp()
+        .setTitle('``I have received a new DM !``')
+        .setThumbnail(`${message.author.avatarURL}`)
+        .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
+        .setFooter(`From **${message.author.tag} (${message.author.id})**`)
+    client.channels.get("#349166082105278477").send({embed:iiMo});
+    }
+});
     
 client.login(process.env.BOT_TOKEN); 
