@@ -828,7 +828,6 @@ client.on("message", message => {
     });
 
 
-const client = new Discord.Client();
 
 
 var x1 = "!color 1"
