@@ -399,7 +399,6 @@ if (!channel) return;
 channel.send({embed : embed});
 });
 
-var prefix = "f!"
 client.on('message', message => {
   if (message.author.x5bz) return;
   if (!message.content.startsWith(prefix)) return;
