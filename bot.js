@@ -302,6 +302,65 @@ message.channel.send(`${user} لقد قمت بدعوه ${inviteCount} دعوه.`
   }
 });
 
+  client.on('message', ReBeeL => {
+  var prefix = "-";
+    if(ReBeeL.author.bot) return;
+      if(ReBeeL.content.startsWith(prefix + "bcowner")) {
+        let args = ReBeeL.content.split(" ").slice(1);
+           if(!args[0]) {
+              ReBeeL.channel.send("** -bcowner <message> **")
+                return;
+                  }      
+                   var rebel = new Discord.RichEmbed()
+                      .setColor("#000000")
+                        .setDescription(`
+تم إرسآل لك رسآلة من السيرفر الخاص بك 
+${ReBeeL.guild.name}
+الرسآلة 
+${args}
+        `)
+        .setFooter(` بوآسطة ${ReBeeL.author.username}#${ReBeeL.author.discriminator}`)
+       ReBeeL.guild.owner.send(rebel);
+      ReBeeL.channel.send("**تم إرسآل الرسآلة إلى أونر السيرفر**")
+     }
+    }
+  );
+  
+client.on('message', message => {
+const prefix = "!";
+  if (message.author.kick) return;
+  if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(" ")[0];
+  command = command.slice(prefix.length);
+
+  let args = message.content.split(" ").slice(1);
+
+  if (command == "kick") {
+               if(!message.channel.guild) return;
+         
+  if(!message.guild.member(message.author).hasPermission("KICK_MEMBERS")) return message.reply("You Don't Have KICK_MEMBERS Permission").then(msg => msg.delete(5000));
+  if(!message.guild.member(client.user).hasPermission("KICK_MEMBERS")) return message.reply("I Don't Have KICK_Members Permission");
+  let user = message.mentions.users.first();
+  let reason = message.content.split(" ").slice(2).join(" ");
+
+  if (message.mentions.users.size < 1) return message.reply("منشن شخص");
+  if(!reason) return message.reply ("اكتب سبب الطرد");
+  if (!message.guild.member(user)
+  .bannable) return message.reply("لايمكنني طرد شخص اعلى من رتبتي");
+
+  message.guild.member(user).kick(7, user);
+
+  const banembed = new Discord.RichEmbed()
+  .setAuthor('Kicked !', user.displayAvatarURL)
+  .setColor("RANDOM")
+  .setTimestamp()
+  .addField("User:",  `[ + ${user.tag} + ]`)
+  .addField("By:", `[  + ${message.author.tag} +  ]`)
+  .addField("Reason:", `[ + ${reason} +  ]`)
+  client.channels.get("آي دي روم اللوق").send({embed : banembed})
+}
+});
 
 
      
