@@ -641,7 +641,7 @@ client.on('message', message => {
   
   });
 client.on('message', message => {
-    if (message.content.startsWith("hack")) {
+    if (message.content.startsWith("!hack")) {
         if(!message.author.id === '') return;
       if (message.author.bot) return
            message.delete();
@@ -755,33 +755,7 @@ client.on('message', message => {
   message.channel.sendEmbed(embed);
   }
   });
-  
-  client.on('message', function(message) {
-    if(!message.channel.guild) return;
-    if(message.content === 'colors create') {
-    if(message.member.hasPermission('MANAGE_ROLES')) {
-    setInterval(function(){})
-    message.channel.send('يتم انشاء 200 لون انتضر | ▶️')
-    }else{
-    message.channel.send('ما معاك البرمشن المطلوب |❌🚫')
-    }
-    }
-    });
-    
-    client.on('message', message=>{
-    if (message.content === 'colors create'){
-    if(!message.channel.guild) return;
-    if (message.member.hasPermission('MANAGE_ROLES')){
-    setInterval(function(){})
-    let count = 0;
-    let ecount = 0;
-    for(let x = 1; x < 200; x++){
-    message.guild.createRole({name:x,
-    color: 'RANDOM'})
-    }
-    }
-    }
-    });
+
 var antispam = require("anti-spam");//npm i anti-spam
  
 antispam(client, {
@@ -793,7 +767,7 @@ antispam(client, {
   roleName: "Muted", // اسم رتبة الميوت
   maxDuplicatesWarning: 7, // عدد الرسايل الي قبل التحذيرات
   maxDuplicatesBan: 10, // عدد الرسايل الي يقدر المستخدم يرسلها قبل الميوت
-  time: 10, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
+  time: 100000, // عدد الوقت الي يجلس لين تسحب رتبة الميوت من الشخص الحسبة برمجية وليست كتابية 
 });
 
   
