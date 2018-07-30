@@ -335,7 +335,7 @@ message.guild.unban(ns);
 
     while (!guild)
 
-        guild = client.guilds.get("@348375103316426755");
+        guild = client.guilds.get("348375103316426755");
 
     guild.fetchInvites().then((data) => {
 
@@ -359,7 +359,7 @@ message.guild.unban(ns);
 
 client.on("guildMemberAdd", (member) => {
 
-    let channel = member.guild.channels.get("@469928886658924544");
+    let channel = member.guild.channels.get("469928886658924544");
 
     if (!channel) {
 
@@ -381,7 +381,7 @@ client.on("guildMemberAdd", (member) => {
 
     while (!guild)
 
-        guild = client.guilds.get("@348375103316426755");
+        guild = client.guilds.get("348375103316426755");
 
     guild.fetchInvites().then((data) => {
 
