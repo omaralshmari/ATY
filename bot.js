@@ -416,47 +416,7 @@ client.on("guildCreate", guild => {
   console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
 });
 
- 
- client.on('message', msg => { 
-if (msg.content.startsWith(`!report`)) {
-// تعريف الارجس
-   let args = msg.content.split(" ").slice(1);
-// لو ما منشن احد يرد عيله
-  if (!msg.mentions.members.first()) return msg.reply(`يجب عليك منشن شخص`)
-// لو ما كتب تبليغ بيقوله اكتب تبليغ
-  if (!args[1]) return msg.reply(`امممم .. اكتب تبليغك`)
-// استبدل <الروم> بأسم الروم حقك
-  if (msg.guild.channels.find('name', '<report>')) {
-// استبدل هنا بعد
-    msg.guild.channels.find('name', '<report>').send(`
-  تبليغ على : ${msg.mentions.members.first()}
-  بلغ عليه من قبل : ${msg.member}
-  في روم : ${msg.channel.name}
-  السبب : **${args.join(" ").split(msg.mentions.members.first()).slice(' ')}**
-  `)
-  }
-}
-})
- 
- client.on('message', message => {
 
-    if(message.content.startsWith(prefix + 'rep')) {
-      if(!message.channel.guild) return;
-                    moment.locale('en');
-                  var getvalueof = message.mentions.users.first()
-                    if(!getvalueof) return message.channel.send(`**:mag: |  ${message.author.username}, the user could not be found.    **`);
-                       if(getvalueof.id == message.author.id) return message.channel.send(`**${message.author.username}, you cant give yourself a reputation !**`)
-    if(profile[message.author.id].reps != moment().format('L')) {
-            profile[message.author.id].reps = moment().format('L');
-            profile[getvalueof.id].rep = Math.floor(profile[getvalueof.id].rep+1);
-         message.channel.send(`** :up:  |  ${message.author.username} has given ${getvalueof} a reputation point!**`)
-        } else {
-         message.channel.send(`**:stopwatch: |  ${message.author.username}, you can raward more reputation  ${moment().endOf('day').fromNow()} **`)
-        }
-       }
-});
 
 
 client.login(process.env.BOT_TOKEN); 
-
- 
