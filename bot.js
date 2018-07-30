@@ -434,7 +434,8 @@ if(message.content == ('roles')){
     }// By: . Badd
  message.channel.send(role);
 }// By: . Badd
-});
+
+ });
  
  client.on('message', msg => { 
 if (msg.content.startsWith(`!report`)) {
