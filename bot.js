@@ -379,44 +379,31 @@ client.on('ready', () => {
   console.log('╚[════════════════════════════════════]╝')
 });
 
-
-client.on('guildMemberRemove', member => {
-let channel = member.guild.channels.find('name', 'welcome');
-let memberavatar = member.user.avatarURL
-  if (!channel) return; 
-let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(memberavatar)
-    .addField('🎽 | الاسم :  ',`${member}`)
-    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
-    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
-            .addField('➡| تبقا',`${member.guild.memberCount}`)
-           
-              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
-                
-                                 .addField('شكرا لدخولك سيرفر', `${member.guild.name}`,true)
-                                   
- .setFooter("Top Bot")
-    .setTimestamp()
-
-  channel.sendEmbed(embed);
-});
-client.on('message', message => {
-    let args = message.content.split(" ").slice(1);
-if (message.content.startsWith(prefix + 'مسح')) {
- let args = message.content.split(" ").slice(1)
-    let messagecount = parseInt(args);
-    if (args > 100) return message.reply("اعلى حد للمسح هو 100").then(messages => messages.delete(5000))
-    if (!messagecount) return message.reply("ااختر كمية المسح من 1-100").then(messages => messages.delete(5000))
-    message.channel.fetchMessages({limit: messagecount + 1}).then(messages => message.channel.bulkDelete(messages));
-    message.channel.send(`\`${args}\` تم المسح`).then(messages => messages.delete(5000));
-  }
-  });
 client.on("guildCreate", guild => {
   console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
 });
 
-
+client.on('guildMemberAdd', member => {
+    let channel = member.guild.channels.find('name', 'chat');
+    let memberavatar = member.user.avatarURL
+      if (!channel) return; 
+    let embed = new Discord.RichEmbed()
+        .setColor('RANDOM')
+        .setThumbnail(memberavatar)
+        .addField(':running_shirt_with_sash: | name :  ',`${member}`)
+        .addField(':loudspeaker: | نورت السيرفر ي قلبي' , `Welcome to the server, ${member}`)
+        .addField(':id: | user :', "**[" + `${member.id}` + "]**" )
+                .addField('➡| انت العضو رقم',`${member.guild.memberCount}`)
+               
+                  .addField("Name:",`<@` + `${member.id}` + `>`, true)
+                      
+                                     .addField(' الـسيرفر', `${member.guild.name}`,true)
+                                       
+     .setFooter("**SERVER NAME **")
+        .setTimestamp()
+    
+      channel.sendEmbed(embed);
+    });
 
 
 client.login(process.env.BOT_TOKEN); 
