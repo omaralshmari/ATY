@@ -477,3 +477,5 @@ if (msg.content.startsWith(`!report`)) {
 
 
 client.login(process.env.BOT_TOKEN); 
+
+ 
