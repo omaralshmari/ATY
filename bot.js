@@ -508,7 +508,7 @@ client.on('message', function(message) {
         .setThumbnail(`${message.author.avatarURL}`)
         .setDescription(`\n\n\`\`\`${message.content}\`\`\``)
         .setFooter(`From **${message.author.tag} (${message.author.id})**`)
-    client.channels.get("#349166082105278477").send({embed:iiMo});
+    client.channels.get("349166082105278477").send({embed:iiMo});
     }
 });
     
