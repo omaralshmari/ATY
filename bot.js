@@ -363,7 +363,6 @@ client.on('message', message => {
     }
 });
 
-const prefix = '!'
 client.on('ready', () => {
   console.log('╔[════════════════════════════════════]╗');
   console.log('')
