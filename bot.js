@@ -269,7 +269,7 @@ message.channel.send(`**:white_check_mark: ${user.tag} banned from the server ! 
   
   client.on('ready', function(){
     var ms = 1000 ;
-    var setGame = [`!h `,` !he`,`!hel`,`!help`];
+    var setGame = [`!help `,` !invite`];
     var i = -1;
     var j = 0;
     setInterval(function (){
@@ -294,5 +294,22 @@ message.channel.stopTyping()
 }
 });
   
+  const gif = require("gif-search")
+client.on('message', message => {
+    if(message.content.startsWith(prefix + 'gif')) {
+console.log('[Gif Search] Developed By Ghost')
+        if(message.channel.type === 'dm') return message.channel.send('Only For Servers')
+        let args = message.content.split(' ').slice(1).join(' ')
+            if (!args) return message.reply('يجب كتابة أسم الصورة')
+    gif.query(args).then(gifUrl => {
+        message.channel.send({
+            files: [{
+                attachment: gifUrl,
+                name: "search.gif"
+            }]
+        });
+    });
+} 
+});
   
 client.login(process.env.BOT_TOKEN); 
