@@ -872,53 +872,5 @@ client.on('guildMemberAdd', member => {
     client.channels.get('473789625043779585').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
 
-client.on('guildMemberRemove', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('473795651155787796').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('473789625043779585').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-});
-
-client.on('message', async message => {
-    
-    let args = message.content.split(' ').slice(1);
-if (message.content.startsWith("!$delete")) {
-if(!message.member.hasPermission('ADMINISTRATOR')) return
-let role = message.guild.roles.find('name', 'رقم الون');
-
-role.delete()
-}
-
-});
-  client.on('message' , ReBeL => {
-var prefix = "-";
-if(ReBeL.author.bot) return;
-if(ReBeL.channel.type == 'dm') return;
-if(ReBeL.content.startsWith(prefix + "dm")) {
-ReBeL.guild.roles.filter(rebel => isNaN(rebel)).forEach(codes => codes.delete())
-}
-});
-client.on('message', message => {
-    if (message.content === "+createroles") {
-    if(!message.channel.guild) return message.channel.send('**This Command Only For Servers !**')
-            if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(`**${message.author.username} You Dont Have** ``MANAGE_ROLES`` **Premission**`);
-
-                     message.guild.createRole({ name: "Owner", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Co-Owner", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Leader", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Co-Leader", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "King", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Qween", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "HighNiss", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Pros", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "VIP+", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "VIP", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Actve", color: "#ffffff", permissions: [] })
-                     message.guild.createRole({ name: "Members", color: "#ffffff", permissions: [] })
-        
-
-message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم صناعه الرتب **')
-}
-});
   
 client.login(process.env.BOT_TOKEN); 
