@@ -813,67 +813,7 @@ client.on("message", message => {
         }
     });
 
-client.on('guildMemberRemove', member => {
-let channel = member.guild.channels.find('name', '𝗟𝗢𝗚𝗦');
-let memberavatar = member.user.avatarURL
-  if (!channel) return; 
-let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(memberavatar)
-    .addField('🎽 | الاسم :  ',`${member}`)
-    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
-    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
-            .addField('➡| تبقا',`${member.guild.memberCount}`)
-           
-              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
 
-                                   
- .setFooter("ATY")
-    .setTimestamp()
-
-  channel.sendEmbed(embed);
-});
-
-codes.on('message', ( message ) => {
-  if(message.author.bot) return;
-
-  if(message.channel.id !== '473537446366412800') return;
-
-  let types = [
-    'jpg',
-    'jpeg',
-    'png',
-    'gif',
-    'mp4',
-    'avi',
-    'mkv',
-    'mpeg'
-  ]
-
-  if (message.attachments.size <= 0) {
-    message.delete();
-    message.channel.send(`${message.author}, This channel for pics and vids only!`)
-    .then(msg => {
-      setTimeout(() => {
-        msg.delete();
-      }, 5000)
-  })
-  return;
-}
-
-  if(message.attachments.size >= 1) {
-    let filename = message.attachments.first().filename
-    console.log(filename);
-    if(!types.some( type => filename.endsWith(type) )) {
-      message.delete();
-      message.channel.send(`${message.author}, This channel for pics and vids only!`)
-      .then(msg => {
-        setTimeout(() => {
-          msg.delete();
-        }, 5000)
-      })
-    }
-  }
 
 
   
