@@ -811,17 +811,26 @@ client.on("message", message => {
         } else {
             return;
         }
-    });
+client.on('guildMemberRemove', member => {
+let channel = member.guild.channels.find('name', '𝗟𝗢𝗚𝗦');
+let memberavatar = member.user.avatarURL
+  if (!channel) return; 
+let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setThumbnail(memberavatar)
+    .addField('🎽 | الاسم :  ',`${member}`)
+    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
+    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
+            .addField('➡| تبقا',`${member.guild.memberCount}`)
+           
+              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
 
-client.on("message", async function(message)  {
-let args = message.content.split(" ").slice(1).join(" ")
-if(message.content.startsWith("!voice")){
-return message.channel.send(`**${message.guild.members.filter(member => member.voiceChannel).size}**`);
-}
+                                   
+ .setFooter("ATY")
+    .setTimestamp()
 
-client.on('voiceStateUpdate', (member) => {
-member.guild.channels.get("473795651155787796").setName(`In Voice Channel: [${member.guild.members.filter(member => member.voiceChannel).size}]`)
-})
+  channel.sendEmbed(embed);
+});
 
 
   
