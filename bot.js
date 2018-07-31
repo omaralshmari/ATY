@@ -811,14 +811,7 @@ client.on("message", message => {
             return;
         }
     });
-client.on("message", async function(message)  {
-let args = message.content.split(" ").slice(1).join(" ")
-if(message.content.startsWith("!voice")){
-return message.channel.send(`**${message.guild.members.filter(member => member.voiceChannel).size}**`);
-}
 
-client.on('voiceStateUpdate', (member) => {
-member.guild.channels.get("473795651155787796").setName(`In Voice Channel: [${member.guild.members.filter(member => member.voiceChannel).size}]`)
-})
+
 
 client.login(process.env.BOT_TOKEN); 
