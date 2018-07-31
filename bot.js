@@ -812,7 +812,7 @@ client.on("message", message => {
             return;
         }
 client.on('guildMemberRemove', member => {
-let channel = member.guild.channels.find('name', '𝗟𝗢𝗚𝗦');
+let channel = member.guild.channels.find('name', 'logs');
 let memberavatar = member.user.avatarURL
   if (!channel) return; 
 let embed = new Discord.RichEmbed()
