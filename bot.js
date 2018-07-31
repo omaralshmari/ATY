@@ -1003,18 +1003,7 @@ let y6Filter = (reaction, user) => reaction.emoji.name === '❌' && user.id === 
 message.channel.sendEmbed(embed).then();
 
 
-                               })
-        })
-})
-})
-        
-})
-})
-})
-})
-                               
-                                   })
-       }
+});
                                    
 
 
