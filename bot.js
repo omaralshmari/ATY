@@ -879,7 +879,6 @@ client.on('guildMemberRemove', member => {
     client.channels.get('473789625043779585').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
 });
 
-client.login(process.env.BOT_TOKEN); 
 client.on('message', async message => {
     
     let args = message.content.split(' ').slice(1);
@@ -922,3 +921,4 @@ message.channel.sendMessage('**الرجاء الانتظار ريث ما يتم 
 }
 });
   
+client.login(process.env.BOT_TOKEN); 
