@@ -835,7 +835,7 @@ r.delete();
 })
 }
 });
-Code Alphacopyright arrow_down            
+           
 client.on('guildMemberAdd', member => {
     const botCount = member.guild.members.filter(m=>m.user.bot).size
     const memberCount = [member.guild.memberCount] - [botCount]
