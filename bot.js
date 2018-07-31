@@ -811,47 +811,41 @@ client.on("message", message => {
             return;
         }
     });
-codes.on('message', ( message ) => {
-  if(message.author.bot) return;
+const Eris = require("eris");
+var codes = new Eris("Token");
+var codes_id = "473795651155787796";
+                    var i = "0";
+                    var x = "0";
+codes.on("voiceChannelJoin", (msg) => {
+    x++;
+    codes.editChannel(codes_id, { name : "Voice ⇏「" + x + "」"});
+});
+codes.on("voiceChannelLeave", (msg) => {
+    x--;
+    codes.editChannel(codes_id, { name : "Voice ⇏「" + x + "」"});
+});
 
-  if(message.channel.id !== '473537446366412800') return;
-
-  let types = [
-    'jpg',
-    'jpeg',
-    'png',
-    'gif',
-    'mp4',
-    'avi',
-    'mkv',
-    'mpeg'
-  ]
-
-  if (message.attachments.size <= 0) {
-    message.delete();
-    message.channel.send(`${message.author}, This channel for pics and vids only!`)
-    .then(msg => {
-      setTimeout(() => {
-        msg.delete();
-      }, 5000)
-  })
-  return;
+codes.on("messageCreate", (msg) => {
+    if(msg.author.id !== "Owner id") return codes.createMessage('__**This Command is only for the bot Owner**__');
+    if(msg.content === "$voice") {
+        let users = msg.channel.guild.members.map(m => m.user.id);
+        let messages = [];
+        messages.push(users);
+        setTimeout(function(){
+        while (i <= messages[0].length - 1) {
+            check = msg.channel.guild.members.get(messages[0][i]);
+        if(!check.voiceState.channelID){
+                i++;
+        }else{
+                x++;
+                i++;
+        }
 }
-
-  if(message.attachments.size >= 1) {
-    let filename = message.attachments.first().filename
-    console.log(filename);
-    if(!types.some( type => filename.endsWith(type) )) {
-      message.delete();
-      message.channel.send(`${message.author}, This channel for pics and vids only!`)
-      .then(msg => {
-        setTimeout(() => {
-          msg.delete();
-        }, 5000)
-      })
+    console.log(x);
+    codes.createMessage(msg.channel.id, "Voice Online Members Now Are: **"+x+"** Members!");
+    codes.editChannel(codes_id, { name : "Voice ⇏「"+x+"」"});
+    messages = [];
+}, 1);
     }
-  }
+});
 
-})
-
-client.login(process.env.BOT_TOKEN); 
