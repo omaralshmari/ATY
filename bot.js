@@ -811,7 +811,9 @@ client.on("message", message => {
             return;
         }
     });
-
+client.on('guildMemberAdd', member=> {
+    member.addRole(member.guild.roles.find("name","Members"));
+    });
 
 client.login(process.env.BOT_TOKEN); 
 
