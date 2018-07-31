@@ -824,7 +824,7 @@ if(!credits[message.author.id]) credits[message.author.id] = {
 let userData = credits[message.author.id];
 let m = userData.credits;
 
-fs.writeFile("./creditsCode.json", JSON.stringify(credits), (err) => {
+("./creditsCode.json", JSON.stringify(credits), (err) => {
     if (err) console.error(err);
   });
   credits[message.author.id] = {
@@ -848,7 +848,7 @@ client.on('message', async message => {
     credits: m
     };
 
-    fs.writeFile("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
+    ("./creditsCode.json", JSON.stringify(userData.credits + amount), (err) => {
     if (err) console.error(err);
     });
     
