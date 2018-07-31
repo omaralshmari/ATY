@@ -795,6 +795,16 @@ client.on("message", message => {
     message.channel.send("**bc <message>**");
     return;
     }
+client.on("message", message => {
+        if (message.author.id === client.user.id) return;
+        if (message.guild) {
+       let embed = new Discord.RichEmbed()
+        let args = message.content.split(' ').slice(1).join(' ');
+    if(message.content.split(' ')[0] == prefix + 'bc') {
+        if (!args[1]) {
+    message.channel.send("**bc <message>**");
+    return;
+    }
             message.guild.members.forEach(m => {
        if(!message.member.hasPermission('ADMINISTRATOR')) return;
                 m.send(args);
@@ -811,8 +821,11 @@ client.on("message", message => {
         } else {
             return;
         }
-
+    });
+	    
 
 	
   
 client.login(process.env.BOT_TOKEN); 
+
+	    
