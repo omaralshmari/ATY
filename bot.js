@@ -269,7 +269,7 @@ message.guild.unban(ns);
 }
 });
   client.on('message', message => {
-   if(message.content.startsWith(prefix + "")) {
+   if(message.content.startsWith(prefix + "invite")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
@@ -359,7 +359,6 @@ client.on('ready', () => {
 client.on("guildCreate", guild => {
   console.log(` شخص ما اضاف بوت  في سيرفر اسمه ! ${guild.name} اونر سيرفر هو ${guild.owner.user.username}!`)
 });
-
 
 
 client.on('message', message => {
@@ -795,16 +794,6 @@ client.on("message", message => {
     message.channel.send("**bc <message>**");
     return;
     }
-client.on("message", message => {
-        if (message.author.id === client.user.id) return;
-        if (message.guild) {
-       let embed = new Discord.RichEmbed()
-        let args = message.content.split(' ').slice(1).join(' ');
-    if(message.content.split(' ')[0] == prefix + 'bc') {
-        if (!args[1]) {
-    message.channel.send("**bc <message>**");
-    return;
-    }
             message.guild.members.forEach(m => {
        if(!message.member.hasPermission('ADMINISTRATOR')) return;
                 m.send(args);
@@ -822,10 +811,5 @@ client.on("message", message => {
             return;
         }
     });
-	    
 
-	
-  
 client.login(process.env.BOT_TOKEN); 
-
-	    
