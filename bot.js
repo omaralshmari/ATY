@@ -811,27 +811,8 @@ client.on("message", message => {
         } else {
             return;
         }
-client.on('guildMemberRemove', member => {
-let channel = member.guild.channels.find('name', 'logs');
-let memberavatar = member.user.avatarURL
-  if (!channel) return; 
-let embed = new Discord.RichEmbed()
-    .setColor('RANDOM')
-    .setThumbnail(memberavatar)
-    .addField('🎽 | الاسم :  ',`${member}`)
-    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
-    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
-            .addField('➡| تبقا',`${member.guild.memberCount}`)
-           
-              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
-
-                                   
- .setFooter("ATY")
-    .setTimestamp()
-
-  channel.sendEmbed(embed);
-});
 
 
+	
   
 client.login(process.env.BOT_TOKEN); 
