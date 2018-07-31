@@ -208,7 +208,7 @@ message.channel.send(`This avatar For ${user} link : ${user.avatarURL}`);
 
 
   client.on('ready', function(){
-    var ms = 1000 ;
+    var ms = 8000 ;
     var setGame = [`ATY`];
     var i = -1;
     var j = 0;
@@ -880,3 +880,14 @@ client.on('guildMemberRemove', member => {
 });
 
 client.login(process.env.BOT_TOKEN); 
+client.on('message', async message => {
+    
+    let args = message.content.split(' ').slice(1);
+if (message.content.startsWith("!$delete")) {
+if(!message.member.hasPermission('ADMINISTRATOR')) return
+let role = message.guild.roles.find('name', 'رقم الون');
+
+role.delete()
+}
+
+});
