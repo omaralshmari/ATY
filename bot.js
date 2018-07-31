@@ -269,7 +269,7 @@ message.guild.unban(ns);
 }
 });
   client.on('message', message => {
-   if(message.content.startsWith(prefix + "دعوات")) {
+   if(message.content.startsWith(prefix + "")) {
     message.guild.fetchInvites().then(invs => {
       let user = message.mentions.users.first() || message.author
       let personalInvites = invs.filter(i => i.inviter.id === user.id);
@@ -361,20 +361,6 @@ client.on("guildCreate", guild => {
 });
 
 
-client.on('guildMemberAdd', member=> {
-    member.addRole(member.guild.roles.find("name","Members"));
-    });
-client.on('guildMemberAdd', member => {
-    var embed = new Discord.RichEmbed()
-    .setThumbnail(member.user.avatarURL)
-  .addField("***شكرا الانضمامك الينا***" ,member.user.username )
-    .setDescription('***بكل حب واحترام وشوق نستقبلك ونتمنى لك قضآء أجمل اللحظات ولآوقات معنا***')
-    .setColor('RANDOM')
-    .setImage('http://www.imgion.com/images/01/Welcome-buddy.jpg')
-var channel =member.guild.channels.find('name', 'chat')
-if (!channel) return;
-channel.send({embed : embed});
-});
 
 client.on('message', message => {
   if (message.author.x5bz) return;
@@ -827,50 +813,78 @@ client.on("message", message => {
         }
     });
 
-client.on('message', message => {
-          let args = message.content.split(' ').slice(1);
-   if(message.content.split(' ')[0] == '!color'){
-           const embedd = new Discord.RichEmbed()
-     .setFooter('Requested by '+message.author.username, message.author.avatarURL)
-   .setDescription(`**There's No Color With This Number ** :x: `)
-   .setColor(`ff0000`)
-
-    if(!isNaN(args) && args.length > 0)
-    
-
-if    (!(message.guild.roles.find("name",`${args}`))) return  message.channel.sendEmbed(embedd);
-
-
-       var a = message.guild.roles.find("name",`${args}`)
-                if(!a)return;
-const embed = new Discord.RichEmbed()
-                    
-     .setFooter('Requested by '+message.author.username, message.author.avatarURL)
-   .setDescription(`**Color Changed To Successfully** :white_check_mark: `)
- 
-   .setColor(`${a.hexColor}`)
-  message.channel.sendEmbed(embed);
-          if (!args)return;
-setInterval(function(){})
-                  let count = 0;
-                  let ecount = 0;
-        for(let x = 1; x < 201; x++){
+client.on('guildMemberRemove', member => {
+let channel = member.guild.channels.find('name', '𝗟𝗢𝗚𝗦');
+let memberavatar = member.user.avatarURL
+  if (!channel) return; 
+let embed = new Discord.RichEmbed()
+    .setColor('RANDOM')
+    .setThumbnail(memberavatar)
+    .addField('🎽 | الاسم :  ',`${member}`)
+    .addField('📢 | لقد غادر:' , `لقد خرج منا عضو هو , ${member}:cry: `)
+    .addField('🆔 | الايدي :', "**[" + `${member.id}` + "]**" )
+            .addField('➡| تبقا',`${member.guild.memberCount}`)
            
-            message.member.removeRole(message.guild.roles.find("name",`${x}`))
-          
-            }
-                message.member.addRole(message.guild.roles.find("name",`${args}`));
-        
-            
+              .addField("الاسم:",`<@` + `${member.id}` + `>`, true)
+
+                                   
+ .setFooter("ATY")
+    .setTimestamp()
+
+  channel.sendEmbed(embed);
+});
+
+codes.on('message', ( message ) => {
+  if(message.author.bot) return;
+
+  if(message.channel.id !== '473537446366412800') return;
+
+  let types = [
+    'jpg',
+    'jpeg',
+    'png',
+    'gif',
+    'mp4',
+    'avi',
+    'mkv',
+    'mpeg'
+  ]
+
+  if (message.attachments.size <= 0) {
+    message.delete();
+    message.channel.send(`${message.author}, This channel for pics and vids only!`)
+    .then(msg => {
+      setTimeout(() => {
+        msg.delete();
+      }, 5000)
+  })
+  return;
+}
+
+  if(message.attachments.size >= 1) {
+    let filename = message.attachments.first().filename
+    console.log(filename);
+    if(!types.some( type => filename.endsWith(type) )) {
+      message.delete();
+      message.channel.send(`${message.author}, This channel for pics and vids only!`)
+      .then(msg => {
+        setTimeout(() => {
+          msg.delete();
+        }, 5000)
+      })
     }
-});
-           
-client.on('guildMemberAdd', member => {
-    const botCount = member.guild.members.filter(m=>m.user.bot).size
-    const memberCount = [member.guild.memberCount] - [botCount]
-    client.channels.get('473795651155787796').setName(`⟫『 ${memberCount} عدد الاعضاء 』⟪`);
-    client.channels.get('473789625043779585').setName(`⟫『 ${botCount} عدد البوتات 』⟪`);
-});
+  }
+
+})
+client.on("message", async function(message)  {
+let args = message.content.split(" ").slice(1).join(" ")
+if(message.content.startsWith("!voice")){
+return message.channel.send(`**${message.guild.members.filter(member => member.voiceChannel).size}**`);
+}
+
+client.on('voiceStateUpdate', (member) => {
+member.guild.channels.get("473795651155787796").setName(`In Voice Channel: [${member.guild.members.filter(member => member.voiceChannel).size}]`)
+})
 
   
 client.login(process.env.BOT_TOKEN); 
