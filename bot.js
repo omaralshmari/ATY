@@ -1000,9 +1000,8 @@ client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
     console.log(`in ${client.guilds.size} servers `)
     console.log(`[Users] ${client.users.size}`)
-});let profile = JSON.parse('{}'); 
 
-let points = JSON.parse({./lgz/typePTS.json}, 'utf8'); // يقوم بقراءه ملف النقاط , والمسار حق النقاط
+let points = JSON.parse('/lgz/typePTS.json', 'utf8'); // يقوم بقراءه ملف النقاط , والمسار حق النقاط
 ; 
 ///by ™¦༺♚ƙἶղց|MaS♚༺¦™#9506
 
