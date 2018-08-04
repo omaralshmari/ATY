@@ -824,7 +824,7 @@ client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔�
 
     while (!guild)
 
-        guild = client.guilds.get("اي دي سيرفرك - Server id");
+        guild = client.guilds.get("348375103316426755");
 
     guild.fetchInvites().then((data) => {
 
