@@ -927,7 +927,7 @@ client.on("message", message => {
   };
  
  
-fs.writeFile('./profile.json', JSON.stringify(profile), (err) => {
+, (err) => {
 if (err) console.error(err);
 })
 });
