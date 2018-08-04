@@ -927,7 +927,7 @@ client.on("message", message => {
   };
  
  
-, (err) => {
+,
 if (err) console.error(err);
 })
 });
