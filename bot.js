@@ -815,10 +815,86 @@ client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔�
 client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥𝓔𝓡");
 client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥𝓔𝓡𝓢");
 
-  }, 10000);
+  }, 5000);
 });
 
+  client.on("ready", () => {
 
+    var guild;
+
+    while (!guild)
+
+        guild = client.guilds.get("اي دي سيرفرك - Server id");
+
+    guild.fetchInvites().then((data) => {
+
+        data.forEach((Invite, key, map) => {
+
+            var Inv = Invite.code;
+
+            dat[Inv] = Invite.uses;
+
+        });
+
+    });
+
+});
+
+ 
+
+ 
+
+ 
+
+client.on("guildMemberAdd", (member) => {
+
+    let channel = member.guild.channels.get("473537444214472714");
+
+    if (!channel) {
+
+        console.log("!the channel id it's not correct");
+
+        return;
+
+    }
+
+    if (member.id == client.user.id) {
+
+        return;
+
+    }
+
+    console.log('-');
+
+    var guild;
+
+    while (!guild)
+
+        guild = client.guilds.get("348375103316426755");
+
+    guild.fetchInvites().then((data) => {
+
+        data.forEach((Invite, key, map) => {
+
+            var Inv = Invite.code;
+
+            if (dat[Inv])
+
+                if (dat[Inv] < Invite.uses) {
+
+ channel.send(`تم دعوته بواسطة  ${Invite.inviter} `) ;       
+
+ }
+
+            dat[Inv] = Invite.uses;
+
+       
+
+       });
+
+    });
+
+});
 
 
 client.login(process.env.BOT_TOKEN); 
