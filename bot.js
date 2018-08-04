@@ -995,84 +995,54 @@ client.on('messageDelete', message => {
      channel.send({embed:embed});
 
 });
-
-client.on('ready', () => {
-    console.log(`Logged in as ${client.user.tag}!`);
-    console.log(`in ${client.guilds.size} servers `)
-    console.log(`[Users] ${client.users.size}`)
-
-let points = JSON.parse('/lgz/typePTS.json', 'utf8'); // يقوم بقراءه ملف النقاط , والمسار حق النقاط
-; 
-///by ™¦༺♚ƙἶղց|MaS♚༺¦™#9506
+let points = {}
 
 client.on('message', message => {
-if (!points[message.author.id]) points[message.author.id] = { // يقوم الكود تلقائياً في حال لم يجد نقاط العضو بإنشاء نقاط له ويتم إرسالها الملف المخصص
-	points: 0,
+if (!points[message.author.id]) points[message.author.id] = {
+    points: 0,
   };
-if (message.content.startsWith(prefix + 'لغز')) { // .لغز
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
-///by ™¦༺♚ƙἶղց|MaS♚༺¦™#9506
+if (message.content.startsWith(prefix + 'فكك')) {
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
 
-const type = require('./lgz/nope.json'); // في هذا السطر يقوم الكود بقراءة ملف الأسئلة
-const item = type[Math.floor(Math.random() * type.length)]; // الأرراي المخصص للأسئلة
-const filter = response => { // في هذا السطر يقوم بصنع فلتر للأجوبة
+const type = require('./fkk/fkk.json');
+const item = type[Math.floor(Math.random() * type.length)];
+const filter = response => {
     return item.answers.some(answer => answer.toLowerCase() === response.content.toLowerCase());
 };
-message.channel.send('**لديك 15 ثانية لكتابة الكلمة**').then(msg => {
-	let embed = new Discord.RichEmbed()
-	.setColor('#000000')
-	.setFooter(" ة مجموع نقاطك  |بوت لغز", 'https://c.top4top.net/p_814rjkod1.png')
-	.setDescription(`**قم بكتابة : ${item.type}**`) // ${item.type} = السؤال
-	///by ™¦༺♚ƙἶղց|MaS♚༺¦™#9506
+message.channel.send('**لديك 15 ثانيه لتفكيك الكلمه**').then(msg => {
 
-	msg.channel.sendEmbed(embed).then(() => {
+            
+msg.channel.send(`${item.type}`).then(() => {
         message.channel.awaitMessages(filter, { maxMatches: 1, time: 15000, errors: ['time'] })
         .then((collected) => {
-		message.channel.send(`${collected.first().author} ✅ **لقد قمت بكتابة الكلمة بالوقت المناسب**`);
-		console.log(`[Typing] ${collected.first().author} typed the word.`);
-            let won = collected.first().author; // في هذا السطر يقوم الكود بسحب الأي دي الذي قام بالأجابة اولاً
-            points[won.id].points++;
+        message.channel.send(`${collected.first().author} ✅ **مبروك لقد كسبت نقطه
+لمعرفة نقطاك الرجاء كتابة %نقاطي**`);
+        console.log(`[Typing] ${collected.first().author} typed the word.`);
+            let userData = points[message.author.id];
+            userData.points++;
           })
-          .catch(collected => { // في حال لم يقم أحد بالإجابة
-            message.channel.send(`:x: **لم يقم أحد بكتابة الجملة بالوقت المناسب**`);
-			console.log(`[Typing] Error: No one type the word.`);
+          .catch(collected => {
+            message.channel.send(`:x: **خطأ حاول مرة اخرى**`);
+            console.log('[Typing] Error: No one type the word.');
           })
-		})
-	})
+        })
+    })
 }
 });
 client.on('message', message => {
 if (message.content.startsWith(prefix + 'نقاطي')) {
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
-	let userData = points[message.author.id];
-	let embed = new Discord.RichEmbed()
+    if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(3000));
+    let userData = points[message.author.id];
+    let embed = new Discord.RichEmbed()
     .setAuthor(`${message.author.tag}`, message.author.avatarURL)
-	.setColor('#000000')
-	.setFooter("لغز", 'https://c.top4top.net/p_814rjkod1.png')
-	.setDescription(`نقاطك: \`${userData.points}\``)
-	message.channel.sendEmbed(embed)
+    .setColor('#000000')
+    .setDescription(`نقاطك: \`${userData.points}\``)
+    message.channel.sendEmbed(embed)
   }
-  fs.writeFile("./lgz/typePTS.json", JSON.stringify(points), (err) => {
-    if (err) console.error(err)
-  })
-});
-client.on('guildCreate', guild => {
-	console.log(`Added to a server by: ${guild.owner.user.username} || Server name: ${guild.name} || Users: ${guild.memberCount}`); // ايفنت يقوم بإرسال إلى الكونسل بأنه قد قامت احد السيرفر بدعوة البوت
-});
-client.on('message', message => {
-if (message.content.startsWith(prefix + 'help')) {
-	if(!message.channel.guild) return message.reply('**هذا الأمر للسيرفرات فقط**').then(m => m.delete(300));
-	let embed = new Discord.RichEmbed()
-    .setAuthor(`${message.author.tag}`, message.author.avatarURL)
-	.setColor('RANDOM')
-.setThumbnail("https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/support-128.png") 
-.addField("**:diamond_shape_with_a_dot_inside: Support ™ **","** **")
- .addField("** مبرمجي مبرمج الكود :wrench: **","**™ » <@349843917598097409>. **")
 
-	message.channel.sendEmbed(embed).then(m => m.delete(15000));
-
-}
+  
 });
+
 
 
 client.login(process.env.BOT_TOKEN); 
