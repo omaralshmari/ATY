@@ -811,6 +811,24 @@ client.on("message", message => {
             return;
         }
     });
+client.on("ready", async  => {
+setInterval(function(){
+client.channels.find('id', '473795651155787796').setName("W");
+client.channels.find('id', '473795651155787796').setName("We");
+client.channels.find('id', '473795651155787796').setName("Wel");
+client.channels.find('id', '473795651155787796').setName("Welc");
+client.channels.find('id', '473795651155787796').setName("Welco");
+client.channels.find('id', '473795651155787796').setName("Welcom");
+client.channels.find('id', '473795651155787796').setName("Welcome");
+client.channels.find('id', '473795651155787796').setName("Welcome T");
+client.channels.find('id', '473795651155787796').setName("Welcome To");
+client.channels.find('id', '473795651155787796').setName("Welcome To C");
+client.channels.find('id', '473795651155787796').setName("Welcome To Co");
+client.channels.find('id', '473795651155787796').setName("Welcome To Cod");
+client.channels.find('id', '473795651155787796').setName("Welcome To Code");
+client.channels.find('id', '473795651155787796').setName("Welcome To Codes");
+  }, 3000);
+});
 
 
 
