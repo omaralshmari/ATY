@@ -1168,3 +1168,7 @@ message.channel.stopTyping()
 
 client.login(process.env.BOT_TOKEN); 
 
+
+
+})
+
