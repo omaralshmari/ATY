@@ -815,7 +815,7 @@ client.channels.find('id', '473795651155787796').setName("𝓔𝓡𝓢");
 client.channels.find('id', '473795651155787796').setName("𝓡𝓢");
 client.channels.find('id', '473795651155787796').setName("𝓢");
 
-  }, 3000);
+  }, 10000);
 });
 
 
