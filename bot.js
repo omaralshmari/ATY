@@ -1080,17 +1080,7 @@ if (message.content.startsWith(prefix + "profile")) {
           var client = message.author;
  
       }
-if (!profile[getvalueof.id]) profile[getvalueof.id] = {points: 0,reps: "NOT YET",credits: 1, level: 1,tite: "HypeLC User", rep: 0, lastDaily: "NOT COLLECTED"};
-            let Image = Canvas.Image,
-            canvas = new Canvas(300, 300),
-            ctx = canvas.getContext('2d');
-            fs.readFile("./hlcpro.png", function (err, Background) { //امتداد الصورة
-            if (err) return console.log(err);
-            let BG = Canvas.Image;
-            let ground = new Image;
-            ground.src = Background;
-            ctx.drawImage(ground, 0, 0, 300, 300); // حجم الصورة
- 
+
 })
  
  
