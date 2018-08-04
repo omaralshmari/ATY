@@ -805,15 +805,15 @@ client.on("message", message => {
 client.on("ready", async  => {
 setInterval(function(){
 client.channels.find('id', '473795651155787796').setName("𝓐");
-client.channels.find('id', '473795651155787796').setName("𝓣𝓨 𝓢𝓔𝓡𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓨 𝓢𝓔𝓡𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓢𝓔𝓡𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓔𝓡𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓡𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓥𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓔𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓡𝓢");
-client.channels.find('id', '473795651155787796').setName("𝓢");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥𝓔");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥𝓔𝓡");
+client.channels.find('id', '473795651155787796').setName("𝓐𝓣𝓨 𝓢𝓔𝓡𝓥𝓔𝓡𝓢");
 
   }, 10000);
 });
