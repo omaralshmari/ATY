@@ -751,7 +751,7 @@ client.on('message', message => {
 var antispam = require("anti-spam");//npm i anti-spam
  
 antispam(client, {
-  warnBuffer: 3, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
+  warnBuffer: 9, //الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على تحذير.
   maxBuffer: 5, // الحد الأقصى المسموح به من الرسائل لإرسالها في الفاصل الزمني قبل الحصول على ميوت.
   interval: 1000, // مقدار الوقت قبل حصول باند
   warningMessage: "stop spamming.", // رسالة تحذير اذا سوا سبام!
