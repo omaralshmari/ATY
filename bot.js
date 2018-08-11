@@ -912,8 +912,7 @@ client.on("guildMemberAdd", (member) => {
           })
 
 
-var args = message.content.split(" ").slice(1);
-var title = args[1]
+
           if(message.content.startsWith(codes + "start")) {
               if(!message.guild.member(message.author).hasPermission('MANAGE_GUILD')) return message.channel.send(':heavy_multiplication_x:| s You Dont Have Premission');
               if(!args) return message.channel.send(**Use : $start  <Time> <Presentse>**);
